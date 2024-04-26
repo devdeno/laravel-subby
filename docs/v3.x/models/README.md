@@ -3,14 +3,14 @@
 **Subby** uses 4 models:
 
 ```php
-Bpuig\Subby\Models\Plan;
-Bpuig\Subby\Models\PlanFeature;
-Bpuig\Subby\Models\PlanSubscription;
-Bpuig\Subby\Models\PlanSubscriptionUsage;
+Ljsharp\Subby\Models\Plan;
+Ljsharp\Subby\Models\PlanFeature;
+Ljsharp\Subby\Models\PlanSubscription;
+Ljsharp\Subby\Models\PlanSubscriptionUsage;
 ```
 
 Extra models for optional functionalities are:
 
 ```php
-Bpuig\Subby\Models\PlanSubscriptionSchedule;
+Ljsharp\Subby\Models\PlanSubscriptionSchedule;
 ```

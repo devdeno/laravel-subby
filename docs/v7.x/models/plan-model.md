@@ -8,7 +8,7 @@ can [attach it to a subscription](plan-subscription-model.md#create-a-subscripti
 ## Create a Plan
 
 ```php
-use Bpuig\Subby\Models\Plan;
+use Ljsharp\Subby\Models\Plan;
 
 $plan = Plan::create([
     'tag' => 'basic',
@@ -125,7 +125,7 @@ The use of tiers is **optional**. Usually a tier is a "level" of subscription.
 
 It helps with upgrading or downgrading because usually an upgrade is changed, billed and renewed instantly, and a
 downgrade is changed and billed at the end of period (
-see [laravel-subby-schedule](https://github.com/bpuig/laravel-subby-schedule)).
+see [laravel-subby-schedule](https://github.com/ljsharp/laravel-subby-schedule)).
 
 ### Example
 

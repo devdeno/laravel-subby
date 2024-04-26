@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Services;
+namespace Ljsharp\Subby\Services;
 
-use Bpuig\Subby\Models\PlanSubscription;
-use Bpuig\Subby\Models\PlanSubscriptionSchedule;
 use Carbon\Carbon;
+use Ljsharp\Subby\Models\PlanSubscription;
+use Ljsharp\Subby\Models\PlanSubscriptionSchedule;
 
 class PendingPaymentCollector
 {
@@ -18,7 +18,7 @@ class PendingPaymentCollector
     }
 
     /**
-     * Set date to do the collection
+     * Set date to do the collection.
      * @param Carbon $date
      * @return $this
      */
@@ -30,7 +30,7 @@ class PendingPaymentCollector
     }
 
     /**
-     * Collect regular renewal payments into array
+     * Collect regular renewal payments into array.
      * @return mixed
      */
     public function collectPayments()
@@ -39,7 +39,7 @@ class PendingPaymentCollector
     }
 
     /**
-     * Collect scheduled payments
+     * Collect scheduled payments.
      * @return mixed
      */
     public function collectScheduledPayments()
@@ -49,7 +49,7 @@ class PendingPaymentCollector
 
     /**
      * Collect all pending payments
-     * This function collects regular renewals and scheduled, it prioritizes scheduled over regular renewals
+     * This function collects regular renewals and scheduled, it prioritizes scheduled over regular renewals.
      * @return mixed
      */
     public function collectAllPayments()
@@ -65,7 +65,7 @@ class PendingPaymentCollector
     }
 
     /**
-     * Get regular renewal payments
+     * Get regular renewal payments.
      * @return mixed
      */
     private function getPayments()
@@ -77,13 +77,13 @@ class PendingPaymentCollector
                 'subscription_id' => $subscription->id,
                 'collectable_type' => PlanSubscription::class,
                 'collectable_id' => $subscription->id,
-                'date' => $subscription->ends_at
+                'date' => $subscription->ends_at,
             ];
         });
     }
 
     /**
-     * Get scheduled payments
+     * Get scheduled payments.
      * @return mixed
      */
     private function getScheduledPayments()
@@ -97,7 +97,7 @@ class PendingPaymentCollector
                 'subscription_id' => $subscriptionSchedule->subscription_id,
                 'collectable_type' => PlanSubscriptionSchedule::class,
                 'collectable_id' => $subscriptionSchedule->id,
-                'date' => $subscriptionSchedule->scheduled_at
+                'date' => $subscriptionSchedule->scheduled_at,
             ];
         });
     }

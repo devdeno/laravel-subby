@@ -1,12 +1,12 @@
 <?php
 
-namespace Bpuig\Subby\Tests;
+namespace Ljsharp\Subby\Tests;
 
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Models\PlanFeature;
-use Bpuig\Subby\SubbyServiceProvider;
-use Bpuig\Subby\Tests\Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Models\PlanFeature;
+use Ljsharp\Subby\SubbyServiceProvider;
+use Ljsharp\Subby\Tests\Database\Factories\UserFactory;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -22,7 +22,6 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
         $this->setupDefaultTestData();
     }
-
 
     /**
      * Define environment setup.
@@ -43,24 +42,24 @@ class TestCase extends \Orchestra\Testbench\TestCase
                 'plan_subscriptions' => 'plan_subscriptions',
                 'plan_subscription_features' => 'plan_subscription_features',
                 'plan_subscription_schedules' => 'plan_subscription_schedules',
-                'plan_subscription_usage' => 'plan_subscription_usage'
+                'plan_subscription_usage' => 'plan_subscription_usage',
             ],
             // Models
             'models' => [
-                'plan' => \Bpuig\Subby\Models\Plan::class,
-                'plan_combination' => \Bpuig\Subby\Models\PlanCombination::class,
-                'plan_feature' => \Bpuig\Subby\Models\PlanFeature::class,
-                'plan_subscription' => \Bpuig\Subby\Models\PlanSubscription::class,
-                'plan_subscription_feature' => \Bpuig\Subby\Models\PlanSubscriptionFeature::class,
-                'plan_subscription_schedule' => \Bpuig\Subby\Models\PlanSubscriptionSchedule::class,
-                'plan_subscription_usage' => \Bpuig\Subby\Models\PlanSubscriptionUsage::class,
+                'plan' => Plan::class,
+                'plan_combination' => \Ljsharp\Subby\Models\PlanCombination::class,
+                'plan_feature' => PlanFeature::class,
+                'plan_subscription' => \Ljsharp\Subby\Models\PlanSubscription::class,
+                'plan_subscription_feature' => \Ljsharp\Subby\Models\PlanSubscriptionFeature::class,
+                'plan_subscription_schedule' => \Ljsharp\Subby\Models\PlanSubscriptionSchedule::class,
+                'plan_subscription_usage' => \Ljsharp\Subby\Models\PlanSubscriptionUsage::class,
             ],
             'services' => [
                 'payment_methods' => [
-                    'success' => \Bpuig\Subby\Tests\Services\PaymentMethods\SucceededPaymentMethod::class,
-                    'fail' => \Bpuig\Subby\Tests\Services\PaymentMethods\FailedPaymentMethod::class
-                ]
-            ]
+                    'success' => Services\PaymentMethods\SucceededPaymentMethod::class,
+                    'fail' => Services\PaymentMethods\FailedPaymentMethod::class,
+                ],
+            ],
         ]);
 
         $app['config']->set('database.default', 'testbench');
@@ -98,7 +97,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     }
 
     /**
-     * Set up supervised data for testing
+     * Set up supervised data for testing.
      */
     protected function setupDefaultTestData()
     {
@@ -115,7 +114,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'currency' => 'EUR',
             'invoice_period' => 1,
             'invoice_interval' => 'month',
-            'tier' => 1
+            'tier' => 1,
         ]);
 
         $this->testPlanBasic->refresh();
@@ -124,7 +123,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->testPlanBasic->features()->saveMany([
             new PlanFeature(['tag' => 'social_profiles', 'name' => 'Social profiles available', 'value' => 3, 'sort_order' => 1]),
             new PlanFeature(['tag' => 'posts_per_social_profile', 'name' => 'Scheduled posts per profile', 'value' => 30, 'sort_order' => 10, 'resettable_period' => 1, 'resettable_interval' => 'month']),
-            new PlanFeature(['tag' => 'analytics', 'name' => 'Analytics', 'value' => false, 'sort_order' => 15])
+            new PlanFeature(['tag' => 'analytics', 'name' => 'Analytics', 'value' => false, 'sort_order' => 15]),
         ]);
 
         $this->testPlanBasic->combinations()->create([
@@ -133,7 +132,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'currency' => 'EUR',
             'price' => 99.99,
             'invoice_period' => 1,
-            'invoice_interval' => 'year'
+            'invoice_interval' => 'year',
         ]);
 
         // Create a Pro plan
@@ -144,7 +143,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
             'is_active' => true,
             'price' => 19.99,
             'currency' => 'EUR',
-            'tier' => 2
+            'tier' => 2,
         ]);
 
         $this->testPlanPro->refresh();
@@ -153,7 +152,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
         $this->testPlanPro->features()->saveMany([
             new PlanFeature(['tag' => 'social_profiles', 'name' => 'Social profiles available', 'value' => 5, 'sort_order' => 1]),
             new PlanFeature(['tag' => 'posts_per_social_profile', 'name' => 'Scheduled posts per profile', 'value' => 60, 'sort_order' => 10, 'resettable_period' => 1, 'resettable_interval' => 'month']),
-            new PlanFeature(['tag' => 'analytics', 'name' => 'Analytics', 'value' => true, 'sort_order' => 15])
+            new PlanFeature(['tag' => 'analytics', 'name' => 'Analytics', 'value' => true, 'sort_order' => 15]),
         ]);
 
         // Subscribe test user to plan

@@ -1,5 +1,5 @@
 {
-    "name": "bpuig/laravel-subby",
+    "name": "ljsharp/laravel-subby",
     "description": "Laravel Subby is a flexible plans and subscription management system for Laravel.",
     "type": "library",
     "keywords": [
@@ -13,9 +13,9 @@
     ],
     "license": "MIT",
     "support": {
-        "issues": "https://github.com/bpuig/laravel-subby/issues",
-        "source": "https://github.com/bpuig/laravel-subby",
-        "docs": "https://github.com/bpuig/laravel-subby/blob/master/README.md"
+        "issues": "https://github.com/ljsharp/laravel-subby/issues",
+        "source": "https://github.com/ljsharp/laravel-subby",
+        "docs": "https://github.com/ljsharp/laravel-subby/blob/master/README.md"
     },
     "authors": [
         {
@@ -28,20 +28,21 @@
         "doctrine/dbal": "^2.13.3|^3.1.4|^5.0"
     },
     "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.54",
         "illuminate/console": "^9.0|^10.0|^11.0",
         "illuminate/container": "^9.0|^10.0|^11.0",
-        "phpunit/phpunit": "^9.5.8|^10.0|^11.0",
-        "orchestra/testbench": "^7.0|^8.0|^9.0"
+        "orchestra/testbench": "^7.0|^8.0|^9.0",
+        "phpunit/phpunit": "^9.5.8|^10.0|^11.0"
     },
     "autoload": {
         "psr-4": {
-            "Bpuig\\Subby\\": "src"
+            "Ljsharp\\Subby\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Bpuig\\Subby\\Tests\\": "tests",
-            "Bpuig\\Subby\\Tests\\Database\\Factories\\": "tests/Database/Factories"
+            "Ljsharp\\Subby\\Tests\\": "tests",
+            "Ljsharp\\Subby\\Tests\\Database\\Factories\\": "tests/Database/Factories"
         }
     },
     "scripts": {
@@ -55,7 +56,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Bpuig\\Subby\\SubbyServiceProvider"
+                "Ljsharp\\Subby\\SubbyServiceProvider"
             ]
         }
     },

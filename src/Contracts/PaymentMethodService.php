@@ -1,8 +1,6 @@
 <?php
 
-
-namespace Bpuig\Subby\Contracts;
-
+namespace Ljsharp\Subby\Contracts;
 
 interface PaymentMethodService
 {
@@ -10,7 +8,7 @@ interface PaymentMethodService
     const TIMEOUT = 120;
 
     /**
-     * Logic for charging the payment amount
+     * Logic for charging the payment amount.
      */
     public function charge();
 }

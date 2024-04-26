@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Traits;
+namespace Ljsharp\Subby\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,7 +12,7 @@ trait BelongsToPlan
     /**
      * The model always belongs to a plan.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function plan(): BelongsTo
     {
@@ -22,10 +22,10 @@ trait BelongsToPlan
     /**
      * Scope models by plan id.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      * @param int $planId
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeByPlanId(Builder $builder, int $planId): Builder
     {

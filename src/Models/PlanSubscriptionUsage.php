@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Models;
+namespace Ljsharp\Subby\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
@@ -11,9 +11,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class PlanSubscriptionUsage extends Model
 {
-
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'plan_subscription_feature_id',
@@ -22,7 +21,7 @@ class PlanSubscriptionUsage extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $casts = [
         'used' => 'integer',
@@ -42,7 +41,7 @@ class PlanSubscriptionUsage extends Model
     }
 
     /**
-     * Get validation rules
+     * Get validation rules.
      * @return string[]
      */
     public function getRules(): array
@@ -57,7 +56,7 @@ class PlanSubscriptionUsage extends Model
     /**
      * Subscription usage always belongs to a plan subscription feature.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return BelongsTo
      */
     public function feature(): BelongsTo
     {
@@ -67,10 +66,10 @@ class PlanSubscriptionUsage extends Model
     /**
      * Scope subscription usage by feature tag.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      * @param string $featureTag
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeByFeatureTag(Builder $builder, string $featureTag): Builder
     {

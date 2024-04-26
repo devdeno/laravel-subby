@@ -1,21 +1,19 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Services\PendingPaymentCollector;
-use Bpuig\Subby\Tests\Database\Factories\UserFactory;
-use Bpuig\Subby\Tests\TestCase;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Ljsharp\Subby\Services\PendingPaymentCollector;
+use Ljsharp\Subby\Tests\Database\Factories\UserFactory;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PendingPaymentCollectorTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test pending payment collector
+     * Test pending payment collector.
      */
     public function testPendingPaymentCollector()
     {
@@ -37,7 +35,7 @@ class PendingPaymentCollectorTest extends TestCase
     }
 
     /**
-     * Test pending payment collector
+     * Test pending payment collector.
      */
     public function testPendingPaymentCollectorWithoutPending()
     {
@@ -57,7 +55,7 @@ class PendingPaymentCollectorTest extends TestCase
     }
 
     /**
-     * Test pending payment collector schedule
+     * Test pending payment collector schedule.
      */
     public function testScheduledPendingPaymentCollector()
     {
@@ -85,7 +83,7 @@ class PendingPaymentCollectorTest extends TestCase
     }
 
     /**
-     * Test pending payment collector schedule
+     * Test pending payment collector schedule.
      */
     public function testScheduledPendingPaymentCollectorWithoutScheduled()
     {
@@ -106,7 +104,7 @@ class PendingPaymentCollectorTest extends TestCase
     }
 
     /**
-     * Test all pending payment collector subscriptions are unique
+     * Test all pending payment collector subscriptions are unique.
      */
     public function testAllPendingPaymentCollectorSubscriptionsAreUnique()
     {

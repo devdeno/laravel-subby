@@ -1,25 +1,23 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Tests\TestCase;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanTest extends TestCase
 {
     /**
-     * Test Plan creation with already existing tag in database
+     * Test Plan creation with already existing tag in database.
      */
     public function testUnableToCreatePlanWithExistingTag()
     {
-        $this->expectException('Bpuig\Subby\Exceptions\DuplicateException');
+        $this->expectException('Ljsharp\Subby\Exceptions\DuplicateException');
         Plan::create([
             'tag' => 'basic',
             'name' => 'New Basic Plan',
             'description' => 'This plan cannot exist.',
-            'currency' => 'EUR'
+            'currency' => 'EUR',
         ]);
     }
 }

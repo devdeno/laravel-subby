@@ -1,16 +1,16 @@
 <?php
 
-namespace Bpuig\Subby\Jobs;
+namespace Ljsharp\Subby\Jobs;
 
-use Bpuig\Subby\Models\PlanSubscription;
-use Bpuig\Subby\Models\PlanSubscriptionSchedule;
-use Bpuig\Subby\Services\PendingPaymentCollector;
 use Carbon\Carbon;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Ljsharp\Subby\Models\PlanSubscription;
+use Ljsharp\Subby\Models\PlanSubscriptionSchedule;
+use Ljsharp\Subby\Services\PendingPaymentCollector;
 
 class SubscriptionPaymentQueuerJob implements ShouldQueue
 {

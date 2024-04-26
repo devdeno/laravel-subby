@@ -1,51 +1,52 @@
 <?php
+
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Traits;
+namespace Ljsharp\Subby\Traits;
 
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Models\PlanCombination;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Models\PlanCombination;
 
 /**
- * Trait HasSchedules
+ * Trait HasSchedules.
  */
 trait HasSchedules
 {
     /**
-     * Plan to which subscription will change
+     * Plan to which subscription will change.
      * @var
      */
     private $scheduledPlan;
 
     /**
-     * Date on which subscription will be changed
+     * Date on which subscription will be changed.
      * @var
      */
     private $scheduledDate;
 
     /**
-     * Method of subscription change creation / update
+     * Method of subscription change creation / update.
      * @var string
      */
     private $method = 'create';
 
     /**
-     * The subscription can be scheduled
+     * The subscription can be scheduled.
      * @return HasMany
      */
-    public function schedules(): hasMany
+    public function schedules(): HasMany
     {
         return $this->hasMany(config('subby.models.plan_subscription_schedule'), 'subscription_id', 'id');
     }
 
     /**
-     * Future plan
+     * Future plan.
      *
      * @param Plan|PlanCombination $planCombination Plan or PlanCombination that will be the new one
      *
-     * @return HasSchedules|\Bpuig\Subby\Models\PlanSubscription
+     * @return HasSchedules|\Ljsharp\Subby\Models\PlanSubscription
      */
     public function toPlan(Plan|PlanCombination $planCombination): self
     {
@@ -55,7 +56,7 @@ trait HasSchedules
     }
 
     /**
-     * Schedule to time
+     * Schedule to time.
      *
      * @param Carbon $date
      * @return HasSchedules
@@ -68,7 +69,7 @@ trait HasSchedules
     }
 
     /**
-     * Create schedule in database
+     * Create schedule in database.
      * @throws \Exception
      */
     public function setSchedule()
@@ -79,14 +80,14 @@ trait HasSchedules
 
         $subscriptionChange = [
             'subscription_id' => $this->id,
-            'scheduled_at' => $this->scheduledDate
+            'scheduled_at' => $this->scheduledDate,
         ];
 
         return $this->scheduledPlan->schedules()->create($subscriptionChange);
     }
 
     /**
-     * Get the latest schedule set to happen before specified date
+     * Get the latest schedule set to happen before specified date.
      * @param Carbon|null $date
      * @return mixed
      */
@@ -104,7 +105,7 @@ trait HasSchedules
     }
 
     /**
-     * Get the first schedule set to happen after specified date
+     * Get the first schedule set to happen after specified date.
      * @param Carbon|null $date
      * @return mixed
      */
@@ -123,7 +124,7 @@ trait HasSchedules
     }
 
     /**
-     * Validate the schedule date
+     * Validate the schedule date.
      * @throws \Exception
      */
     private function validateDate()
@@ -137,7 +138,7 @@ trait HasSchedules
     }
 
     /**
-     * This validation avoids change to the same plan change consecutively
+     * This validation avoids change to the same plan change consecutively.
      * @throws \Exception
      */
     private function validateNeighbourSchedules()
@@ -157,21 +158,21 @@ trait HasSchedules
     }
 
     /**
-     * Compare essential data to determine if it's the same plan settings
+     * Compare essential data to determine if it's the same plan settings.
      * @param $one First plan to compare
      * @param $two Second plan to compare
      * @return bool
      */
     private function arePlansEqual($one, $two)
     {
-        return ($one->currency === $two->currency
+        return $one->currency === $two->currency
             && $one->price === $two->price
             && $one->invoice_period === $two->invoice_period
-            && $one->invoice_interval === $two->invoice_interval);
+            && $one->invoice_interval === $two->invoice_interval;
     }
 
     /**
-     * Validate the scheduled plan
+     * Validate the scheduled plan.
      * @throws \Exception
      */
     private function validatePlan()

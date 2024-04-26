@@ -5,7 +5,7 @@ This is the main model of the package, there is nothing without plans.
 ## Create a Plan<a name="create-plan"></a>
 
 ```php
-use Bpuig\Subby\Models\Plan;
+use Ljsharp\Subby\Models\Plan;
 
 $plan = Plan::create([
     'tag' => 'basic',

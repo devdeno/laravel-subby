@@ -18,7 +18,7 @@ The way this package is made:
 
 ## Extensions
 
-- [Laravel Subby Schedule](https://github.com/bpuig/laravel-subby-schedule): For scheduling your plan changes in the
+- [Laravel Subby Schedule](https://github.com/ljsharp/laravel-subby-schedule): For scheduling your plan changes in the
   future.
 
 ## Considerations

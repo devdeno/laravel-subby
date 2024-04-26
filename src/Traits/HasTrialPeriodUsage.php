@@ -1,19 +1,17 @@
 <?php
 
+namespace Ljsharp\Subby\Traits;
 
-namespace Bpuig\Subby\Traits;
-
-
-use Bpuig\Subby\Helpers\CarbonHelper;
-use Bpuig\Subby\Services\Period;
 use Illuminate\Support\Carbon;
+use Ljsharp\Subby\Helpers\CarbonHelper;
+use Ljsharp\Subby\Services\Period;
 
 trait HasTrialPeriodUsage
 {
     use HasTrialPeriod;
 
     /**
-     * Trial start date function
+     * Trial start date function.
      * @return mixed
      */
     public function getTrialStartDate()
@@ -22,7 +20,7 @@ trait HasTrialPeriodUsage
     }
 
     /**
-     * Trial period usage
+     * Trial period usage.
      * @param string $interval
      * @return int
      * @throws \Exception
@@ -35,7 +33,7 @@ trait HasTrialPeriodUsage
     }
 
     /**
-     * Remaining trial period usage
+     * Remaining trial period usage.
      * @param string $interval
      * @return int
      */
@@ -45,7 +43,7 @@ trait HasTrialPeriodUsage
     }
 
     /**
-     * Check if entity has ended trial
+     * Check if entity has ended trial.
      *
      * @return bool
      */

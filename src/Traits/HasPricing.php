@@ -1,8 +1,6 @@
 <?php
 
-
-namespace Bpuig\Subby\Traits;
-
+namespace Ljsharp\Subby\Traits;
 
 trait HasPricing
 {
@@ -13,6 +11,6 @@ trait HasPricing
      */
     public function isFree(): bool
     {
-        return (float)$this->price <= 0.00;
+        return (float) $this->price <= 0.00;
     }
 }

@@ -1,15 +1,13 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Tests\TestCase;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanCombinationTest extends TestCase
 {
     /**
-     * Test Plan Combination creation with already existing tag in database
+     * Test Plan Combination creation with already existing tag in database.
      */
     public function testUnableToCreatePlanCombinationWithExistingTag()
     {
@@ -20,12 +18,12 @@ class PlanCombinationTest extends TestCase
             'currency' => 'EUR',
             'price' => 99.99,
             'invoice_period' => 1,
-            'invoice_interval' => 'year'
+            'invoice_interval' => 'year',
         ]);
     }
 
     /**
-     * Test Plan Combination creation with already existing content in database
+     * Test Plan Combination creation with already existing content in database.
      */
     public function testUnableToCreatePlanCombinationWithExistingContent()
     {
@@ -36,7 +34,7 @@ class PlanCombinationTest extends TestCase
             'currency' => 'EUR',
             'price' => 99.99,
             'invoice_period' => 1,
-            'invoice_interval' => 'year'
+            'invoice_interval' => 'year',
         ]);
     }
 }

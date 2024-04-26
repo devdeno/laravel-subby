@@ -2,24 +2,23 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Models;
+namespace Ljsharp\Subby\Models;
 
-use Bpuig\Subby\Traits\HasResetDate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 use InvalidArgumentException;
+use Ljsharp\Subby\Traits\HasResetDate;
 
 /**
- * Class PlanSubscriptionFeature
- * @package Bpuig\Subby\Models
+ * Class PlanSubscriptionFeature.
  */
 class PlanSubscriptionFeature extends Model
 {
     use HasResetDate;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'tag',
@@ -34,7 +33,7 @@ class PlanSubscriptionFeature extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $casts = [
         'tag' => 'string',
@@ -57,7 +56,7 @@ class PlanSubscriptionFeature extends Model
     }
 
     /**
-     * Get validation rules
+     * Get validation rules.
      * @return string[]
      */
     public function getRules(): array
@@ -81,7 +80,6 @@ class PlanSubscriptionFeature extends Model
         ];
     }
 
-
     /**
      * The subscription feature belongs to one subscription.
      *
@@ -103,7 +101,7 @@ class PlanSubscriptionFeature extends Model
     }
 
     /**
-     * The subscription feature has one usage
+     * The subscription feature has one usage.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -113,9 +111,9 @@ class PlanSubscriptionFeature extends Model
     }
 
     /**
-     * Show features that are not inherited by subscription's plan relation
-     * @param \Illuminate\Database\Eloquent\Builder $query
-     * @return \Illuminate\Database\Eloquent\Builder
+     * Show features that are not inherited by subscription's plan relation.
+     * @param Builder $query
+     * @return Builder
      */
     public function scopeWithoutPlan(Builder $query)
     {
@@ -126,7 +124,7 @@ class PlanSubscriptionFeature extends Model
     }
 
     /**
-     * Sync feature with subscription related plan
+     * Sync feature with subscription related plan.
      * @return $this
      */
     public function syncPlanSubscription()
@@ -138,11 +136,11 @@ class PlanSubscriptionFeature extends Model
     }
 
     /**
-     * Sync feature with related plan feature
+     * Sync feature with related plan feature.
      * @param PlanFeature|null $planFeature
      * @return PlanSubscriptionFeature
      */
-    public function syncPlanFeature(PlanFeature $planFeature = null): PlanSubscriptionFeature
+    public function syncPlanFeature(PlanFeature $planFeature = null): self
     {
         if (!$planFeature && $this->plan_feature_id) {
             // If no Plan Feature specified, use plan in related feature (feature_id)

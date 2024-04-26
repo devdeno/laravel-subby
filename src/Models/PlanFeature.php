@@ -2,20 +2,19 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Models;
+namespace Ljsharp\Subby\Models;
 
-use Bpuig\Subby\Traits\BelongsToPlan;
-use Bpuig\Subby\Traits\HasResetDate;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Validation\Rule;
+use Ljsharp\Subby\Traits\BelongsToPlan;
+use Ljsharp\Subby\Traits\HasResetDate;
 
 class PlanFeature extends Model
 {
     use BelongsToPlan, HasResetDate;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'tag',
@@ -29,7 +28,7 @@ class PlanFeature extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $casts = [
         'tag' => 'string',
@@ -52,7 +51,7 @@ class PlanFeature extends Model
     }
 
     /**
-     * Get validation rules
+     * Get validation rules.
      * @return string[]
      */
     public function getRules(): array

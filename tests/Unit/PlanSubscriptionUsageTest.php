@@ -1,18 +1,16 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanSubscriptionUsageTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Consume all of a feature and check if can use
+     * Consume all of a feature and check if can use.
      */
     public function testConsumeAllFeature()
     {
@@ -21,7 +19,7 @@ class PlanSubscriptionUsageTest extends TestCase
     }
 
     /**
-     * Consume all of a feature and check next period without renewing monthly subscription
+     * Consume all of a feature and check next period without renewing monthly subscription.
      */
     public function testConsumeAllFeatureAndMoveToNextUsagePeriodWithoutRenewal()
     {
@@ -31,7 +29,7 @@ class PlanSubscriptionUsageTest extends TestCase
     }
 
     /**
-     * Consume all of a feature and check next period with renewing monthly subscription
+     * Consume all of a feature and check next period with renewing monthly subscription.
      */
     public function testConsumeAllFeatureAndMoveToNextUsagePeriodWithRenewal()
     {
@@ -42,7 +40,7 @@ class PlanSubscriptionUsageTest extends TestCase
     }
 
     /**
-     * Consume all of a feature and renew for one more period
+     * Consume all of a feature and renew for one more period.
      */
     public function testConsumeAllFeatureAndMoveToNextSubscriptionPeriod()
     {
@@ -55,7 +53,7 @@ class PlanSubscriptionUsageTest extends TestCase
     }
 
     /**
-     * Consume all of a feature and check next period
+     * Consume all of a feature and check next period.
      */
     public function testRenewToNextPeriodAndUseFeature()
     {
@@ -65,7 +63,7 @@ class PlanSubscriptionUsageTest extends TestCase
     }
 
     /**
-     * Cancel subscription immediately and check for usage
+     * Cancel subscription immediately and check for usage.
      */
     public function testImmediateCancelSubscriptionAndUseIt()
     {
@@ -74,7 +72,7 @@ class PlanSubscriptionUsageTest extends TestCase
     }
 
     /**
-     * Cancel subscription and check for usage
+     * Cancel subscription and check for usage.
      */
     public function testCancelSubscriptionAndUseIt()
     {
@@ -83,7 +81,7 @@ class PlanSubscriptionUsageTest extends TestCase
     }
 
     /**
-     * Cancel subscription and check for usage next period
+     * Cancel subscription and check for usage next period.
      */
     public function testCancelSubscriptionMoveToNextPeriodAndUseIt()
     {

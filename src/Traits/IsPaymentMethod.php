@@ -1,9 +1,9 @@
 <?php
 
-namespace Bpuig\Subby\Traits;
+namespace Ljsharp\Subby\Traits;
 
-use Bpuig\Subby\Models\PlanSubscription;
-use Bpuig\Subby\Models\PlanSubscriptionSchedule;
+use Ljsharp\Subby\Models\PlanSubscription;
+use Ljsharp\Subby\Models\PlanSubscriptionSchedule;
 
 trait IsPaymentMethod
 {
@@ -13,7 +13,7 @@ trait IsPaymentMethod
     private $currency;
 
     /**
-     * Set subscription to charge payment
+     * Set subscription to charge payment.
      *
      * @param PlanSubscription $planSubscription
      * @return $this
@@ -26,7 +26,7 @@ trait IsPaymentMethod
     }
 
     /**
-     * Set schedule to collect payment
+     * Set schedule to collect payment.
      * @param PlanSubscriptionSchedule|null $planSubscriptionSchedule
      * @return $this
      */
@@ -38,7 +38,7 @@ trait IsPaymentMethod
     }
 
     /**
-     * Set the amount to charge
+     * Set the amount to charge.
      * @param $amount
      * @return $this
      */
@@ -50,7 +50,7 @@ trait IsPaymentMethod
     }
 
     /**
-     * Set transaction currency
+     * Set transaction currency.
      * @param string|null $currency
      * @return $this
      */
@@ -72,7 +72,7 @@ trait IsPaymentMethod
 
     /**
      * Execute the strategy
-     * Try charging via default payment method and then change plan
+     * Try charging via default payment method and then change plan.
      * @throws \Exception
      */
     private function executeSchedule()
@@ -89,7 +89,7 @@ trait IsPaymentMethod
 
     /**
      * Execute the strategy
-     * Try charging via default payment method and then renew subscription
+     * Try charging via default payment method and then renew subscription.
      */
     private function executeRenewal()
     {

@@ -1,6 +1,6 @@
 # Plan Subscription Schedule
 ::: danger Breaking changes in v5.0
-There are some things different to  [Laravel Subby Schedule](https://github.com/bpuig/laravel-subby-schedule). In the
+There are some things different to  [Laravel Subby Schedule](https://github.com/ljsharp/laravel-subby-schedule). In the
 rare event that you were using the package, please review the docs.
 - Limits were removed
 - Methods were renamed: `usingService` was `service`
@@ -79,11 +79,11 @@ process has to set it to `true`. Any exception will stop the process.
 <?php
 
 
-namespace Bpuig\Subby\Services;
+namespace Ljsharp\Subby\Services;
 
 
-use Bpuig\Subby\Contracts\PlanSubscriptionScheduleService;
-use Bpuig\Subby\Traits\IsScheduleService;
+use Ljsharp\Subby\Contracts\PlanSubscriptionScheduleService;
+use Ljsharp\Subby\Traits\IsScheduleService;
 
 class ScheduleService implements PlanSubscriptionScheduleService
 {

@@ -2,23 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Models;
+namespace Ljsharp\Subby\Models;
 
-use Bpuig\Subby\Traits\BelongsToPlan;
-use Bpuig\Subby\Traits\MorphsSchedules;
 use Illuminate\Contracts\Validation\Rule;
 use Illuminate\Database\Eloquent\Model;
+use Ljsharp\Subby\Traits\BelongsToPlan;
+use Ljsharp\Subby\Traits\MorphsSchedules;
 
 /**
- * Class Plan Combination
- * @package Bpuig\Subby\Models
+ * Class Plan Combination.
  */
 class PlanCombination extends Model
 {
     use BelongsToPlan, MorphsSchedules;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'tag',
@@ -27,11 +26,11 @@ class PlanCombination extends Model
         'price',
         'signup_fee',
         'invoice_period',
-        'invoice_interval'
+        'invoice_interval',
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $casts = [
         'tag' => 'string',
@@ -40,7 +39,7 @@ class PlanCombination extends Model
         'price' => 'float',
         'signup_fee' => 'float',
         'invoice_period' => 'integer',
-        'invoice_interval' => 'string'
+        'invoice_interval' => 'string',
     ];
 
     /**
@@ -56,7 +55,7 @@ class PlanCombination extends Model
     }
 
     /**
-     * Get validation rules
+     * Get validation rules.
      * @return string[]
      */
     public function getRules(): array
@@ -76,7 +75,7 @@ class PlanCombination extends Model
             'signup_fee' => 'required|numeric',
             'currency' => 'required|alpha|size:3',
             'invoice_period' => 'sometimes|integer|max:100000',
-            'invoice_interval' => 'sometimes|in:hour,day,week,month'
+            'invoice_interval' => 'sometimes|in:hour,day,week,month',
         ];
     }
 
@@ -86,7 +85,7 @@ class PlanCombination extends Model
      * @param string $tag
      * @return null|$this
      */
-    static public function getByTag(string $tag): ?PlanCombination
+    public static function getByTag(string $tag): ?self
     {
         return static::where('tag', $tag)->first();
     }

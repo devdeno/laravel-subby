@@ -19,7 +19,7 @@ module.exports = {
      * ref：https://v1.vuepress.vuejs.org/theme/default-theme-config.html
      */
     themeConfig: {
-        repo: 'https://github.com/bpuig/laravel-subby',
+        repo: 'https://github.com/ljsharp/laravel-subby',
         editLinks: false,
         docsDir: '',
         editLinkText: '',

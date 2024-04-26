@@ -2,18 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Services;
+namespace Ljsharp\Subby\Services;
 
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Models\PlanCombination;
 use Carbon\Carbon;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Models\PlanCombination;
 
 /**
- * Class SubscriptionPeriod
+ * Class SubscriptionPeriod.
  *
  * Intermediate class to calculate subscription periods accounting trial
- *
- * @package Bpuig\Subby\Services
  */
 class SubscriptionPeriod
 {
@@ -39,7 +37,7 @@ class SubscriptionPeriod
     /**
      * Get start date.
      *
-     * @return \Carbon\Carbon|null
+     * @return Carbon|null
      */
     public function getStartDate()
     {
@@ -49,7 +47,7 @@ class SubscriptionPeriod
     /**
      * Get end date.
      *
-     * @return \Carbon\Carbon
+     * @return Carbon
      */
     public function getEndDate()
     {
@@ -59,7 +57,7 @@ class SubscriptionPeriod
     /**
      * Get trial end date.
      *
-     * @return \Carbon\Carbon
+     * @return Carbon
      */
     public function getTrialEndDate()
     {
@@ -67,7 +65,7 @@ class SubscriptionPeriod
     }
 
     /**
-     * Set trial period based on plan data
+     * Set trial period based on plan data.
      */
     private function setTrialPeriod()
     {
@@ -76,7 +74,7 @@ class SubscriptionPeriod
     }
 
     /**
-     * Set subscription period
+     * Set subscription period.
      */
     private function setSubscriptionPeriod()
     {

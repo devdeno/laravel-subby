@@ -24,11 +24,11 @@ Current stable version is v7. Click on each version to read documentation.
 
 ## Changelog
 
-Refer to the [Releases](https://github.com/bpuig/laravel-subby/releases) for a changelog of the project.
+Refer to the [Releases](https://github.com/ljsharp/laravel-subby/releases) for a changelog of the project.
 
 ## License
 
-Forked originally from [rinvex/laravel-subscriptions](https://github.com/rinvex/laravel-subscriptions). Thank you for
+Forked originally from [devdeno/laravel-subby](https://github.com/devdeno/laravel-subby). Thank you for
 creating the original!
 
 This software is released under [The MIT License (MIT)](LICENSE).

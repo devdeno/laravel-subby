@@ -1,10 +1,10 @@
 <?php
 
-namespace Bpuig\Subby\Exceptions;
+namespace Ljsharp\Subby\Exceptions;
 
 class InvalidPlanSubscription extends LaravelSubbyException
 {
-    public function __construct($subscriptionTag = "")
+    public function __construct($subscriptionTag = '')
     {
         $message = "Subscription '{$subscriptionTag}' not found.";
 

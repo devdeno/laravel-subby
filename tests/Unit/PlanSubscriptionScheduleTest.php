@@ -1,29 +1,25 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Models\PlanSubscriptionSchedule;
-use Bpuig\Subby\Tests\TestCase;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanSubscriptionScheduleTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test Create a schedule
+     * Test Create a schedule.
      */
     public function testScheduleCreation()
     {
         $date = Carbon::now()->add(5, 'day');
         $this->testUser->subscription('main')->toPlan($this->testPlanPro)->onDate($date)->setSchedule();
 
-        $schedule =$this->testPlanPro->schedules()
+        $schedule = $this->testPlanPro->schedules()
             ->where('subscription_id', $this->testUser->subscription('main')->id)
             ->where('scheduled_at', $date->format('Y-m-d H:i:s'))
             ->first();
@@ -32,7 +28,7 @@ class PlanSubscriptionScheduleTest extends TestCase
     }
 
     /**
-     * Test Create a schedule without date
+     * Test Create a schedule without date.
      */
     public function testScheduleCreationWithoutDate()
     {
@@ -41,7 +37,7 @@ class PlanSubscriptionScheduleTest extends TestCase
     }
 
     /**
-     * Test Create a schedule without plan
+     * Test Create a schedule without plan.
      */
     public function testScheduleCreationWithoutPlan()
     {
@@ -51,17 +47,17 @@ class PlanSubscriptionScheduleTest extends TestCase
     }
 
     /**
-     * Test Create a schedule with wrong plan
+     * Test Create a schedule with wrong plan.
      */
     public function testScheduleCreationWithWrongPlan()
     {
         $date = Carbon::now()->add(5, 'day');
-        $this->expectExceptionMessage('Argument #1 ($planCombination) must be of type Bpuig\Subby\Models\Plan|Bpuig\Subby\Models\PlanCombination');
+        $this->expectExceptionMessage('Argument #1 ($planCombination) must be of type Ljsharp\Subby\Models\Plan|Ljsharp\Subby\Models\PlanCombination');
         $this->testUser->subscription('main')->toPlan('test')->onDate($date)->setSchedule();
     }
 
     /**
-     * Test Create schedule in the past
+     * Test Create schedule in the past.
      */
     public function testPastScheduleCreation()
     {
@@ -71,7 +67,7 @@ class PlanSubscriptionScheduleTest extends TestCase
     }
 
     /**
-     * Test change the plan and the same plan change exists in the database scheduled before this change
+     * Test change the plan and the same plan change exists in the database scheduled before this change.
      */
     public function testSamePlanChangeAsPreviousPlan()
     {
@@ -86,7 +82,7 @@ class PlanSubscriptionScheduleTest extends TestCase
     }
 
     /**
-     * Test change the plan and the same plan change exists in the database scheduled after this change
+     * Test change the plan and the same plan change exists in the database scheduled after this change.
      */
     public function testSamePlanChangeAsNextPlan()
     {
@@ -101,7 +97,7 @@ class PlanSubscriptionScheduleTest extends TestCase
     }
 
     /**
-     * Test an acceptable concatenation of different plans
+     * Test an acceptable concatenation of different plans.
      */
     public function testMultiplePlanScheduleCreation()
     {

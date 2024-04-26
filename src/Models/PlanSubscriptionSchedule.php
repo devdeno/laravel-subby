@@ -1,41 +1,40 @@
 <?php
 
-namespace Bpuig\Subby\Models;
+namespace Ljsharp\Subby\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class PlanSubscriptionSchedule
- * @package Bpuig\Subby\Models
+ * Class PlanSubscriptionSchedule.
  *
- * @property integer $id
- * @property integer $subscription_id
- * @property integer $plan_id;
- * @property \Carbon\Carbon|null $scheduled_at
- * @property \Carbon\Carbon|null $failed_at
- * @property \Carbon\Carbon|null $succeeded_at
+ * @property int $id
+ * @property int $subscription_id
+ * @property int $plan_id;
+ * @property Carbon|null $scheduled_at
+ * @property Carbon|null $failed_at
+ * @property Carbon|null $succeeded_at
  */
 class PlanSubscriptionSchedule extends Model
 {
     public $timestamps = false;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'subscription_id',
-        'scheduled_at'
+        'scheduled_at',
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $casts = [
         'scheduleable_type' => 'string',
         'scheduled_at' => 'datetime',
         'failed_at' => 'datetime',
-        'succeeded_at' => 'datetime'
+        'succeeded_at' => 'datetime',
     ];
 
     /**
@@ -51,19 +50,19 @@ class PlanSubscriptionSchedule extends Model
     }
 
     /**
-     * Get validation rules
+     * Get validation rules.
      * @return string[]
      */
     public function getRules(): array
     {
         return [
             'subscription_id' => 'required|integer|exists:' . config('subby.tables.plan_subscriptions') . ',id',
-            'scheduled_at' => 'date'
+            'scheduled_at' => 'date',
         ];
     }
 
     /**
-     * Subscription Schedule belongs to Subscription
+     * Subscription Schedule belongs to Subscription.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -81,7 +80,7 @@ class PlanSubscriptionSchedule extends Model
     }
 
     /**
-     * Pending subscription changes
+     * Pending subscription changes.
      *
      * @param $query
      * @param Carbon|null $date
@@ -97,7 +96,7 @@ class PlanSubscriptionSchedule extends Model
     }
 
     /**
-     * Not processed schedules
+     * Not processed schedules.
      * @param $query
      *
      * @return mixed
@@ -108,7 +107,7 @@ class PlanSubscriptionSchedule extends Model
     }
 
     /**
-     * Change Subscription plan
+     * Change Subscription plan.
      * @param bool $clearUsage Clear subscription usage
      * @param bool $syncInvoicing Synchronize billing frequency or leave it unchanged
      * @return PlanSubscriptionSchedule
@@ -124,7 +123,7 @@ class PlanSubscriptionSchedule extends Model
     }
 
     /**
-     * Flag the schedule as failed
+     * Flag the schedule as failed.
      * @return PlanSubscriptionSchedule
      */
     public function fail()

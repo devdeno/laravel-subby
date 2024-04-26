@@ -31,10 +31,10 @@ In config file `subby.php` include after `models` array:
         'plan_subscription_schedules' => 'plan_subscription_schedules'
     ],
     'models' => [
-        'plan_subscription_schedule' => \Bpuig\Subby\Models\PlanSubscriptionSchedule::class,
+        'plan_subscription_schedule' => \Ljsharp\Subby\Models\PlanSubscriptionSchedule::class,
     ],
     'services' => [
-        'default' => \Bpuig\Subby\Services\PlanSubscriptionSchedule\DefaultScheduleService::class
+        'default' => \Ljsharp\Subby\Services\PlanSubscriptionSchedule\DefaultScheduleService::class
     ]
 ]
 ```
@@ -73,9 +73,9 @@ Then edit it to extend package model and add `IsScheduled` trait.
 
 namespace App\Models;
 
-use Bpuig\Subby\Traits\PlanSubscriptionSchedule\IsScheduled;
+use Ljsharp\Subby\Traits\PlanSubscriptionSchedule\IsScheduled;
 
-class PlanSubscription extends \Bpuig\Subby\Models\PlanSubscription
+class PlanSubscription extends \Ljsharp\Subby\Models\PlanSubscription
 {
     use IsScheduled;
 }
@@ -171,11 +171,11 @@ process has to set it to `true`. Any exception will stop the process.
 <?php
 
 
-namespace Bpuig\Subby\Services\PlanSubscriptionSchedule;
+namespace Ljsharp\Subby\Services\PlanSubscriptionSchedule;
 
 
-use Bpuig\Subby\Contracts\PlanSubscriptionScheduleService;
-use Bpuig\Subby\Traits\PlanSubscriptionSchedule\IsScheduleService;
+use Ljsharp\Subby\Contracts\PlanSubscriptionScheduleService;
+use Ljsharp\Subby\Traits\PlanSubscriptionSchedule\IsScheduleService;
 
 class DefaultScheduleService implements PlanSubscriptionScheduleService
 {

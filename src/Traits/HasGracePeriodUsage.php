@@ -1,18 +1,16 @@
 <?php
 
+namespace Ljsharp\Subby\Traits;
 
-namespace Bpuig\Subby\Traits;
-
-
-use Bpuig\Subby\Helpers\CarbonHelper;
 use Illuminate\Support\Carbon;
+use Ljsharp\Subby\Helpers\CarbonHelper;
 
 trait HasGracePeriodUsage
 {
     use HasGracePeriod;
 
     /**
-     * Grace start date function
+     * Grace start date function.
      * @return mixed
      */
     public function getGraceStartDate()
@@ -21,7 +19,7 @@ trait HasGracePeriodUsage
     }
 
     /**
-     * Grace end date function
+     * Grace end date function.
      * @return mixed
      */
     public function getGraceEndDate()
@@ -30,7 +28,7 @@ trait HasGracePeriodUsage
     }
 
     /**
-     * Grace period usage
+     * Grace period usage.
      * @param string $interval
      * @return int
      * @throws \Exception
@@ -47,7 +45,7 @@ trait HasGracePeriodUsage
     }
 
     /**
-     * Remaining trial period usage
+     * Remaining trial period usage.
      * @param string $interval
      * @return int
      */
@@ -61,7 +59,7 @@ trait HasGracePeriodUsage
     }
 
     /**
-     * Check if entity has started grace
+     * Check if entity has started grace.
      *
      * @return bool
      */
@@ -71,7 +69,7 @@ trait HasGracePeriodUsage
     }
 
     /**
-     * Check if entity has ended grace
+     * Check if entity has ended grace.
      *
      * @return bool
      */
@@ -81,7 +79,7 @@ trait HasGracePeriodUsage
     }
 
     /**
-     * Check if entity is in grace period
+     * Check if entity is in grace period.
      * @return bool
      */
     public function isInGrace(): bool

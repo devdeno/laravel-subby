@@ -1,8 +1,6 @@
 <?php
 
-
-namespace Bpuig\Subby\Traits;
-
+namespace Ljsharp\Subby\Traits;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;

@@ -2,29 +2,28 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Models;
+namespace Ljsharp\Subby\Models;
 
-use Bpuig\Subby\Exceptions\DuplicateException;
-use Bpuig\Subby\Traits\HasFeatures;
-use Bpuig\Subby\Traits\HasGracePeriod;
-use Bpuig\Subby\Traits\HasPricing;
-use Bpuig\Subby\Traits\HasSubscriptionPeriod;
-use Bpuig\Subby\Traits\HasTrialPeriod;
-use Bpuig\Subby\Traits\MorphsSchedules;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Ljsharp\Subby\Exceptions\DuplicateException;
+use Ljsharp\Subby\Traits\HasFeatures;
+use Ljsharp\Subby\Traits\HasGracePeriod;
+use Ljsharp\Subby\Traits\HasPricing;
+use Ljsharp\Subby\Traits\HasSubscriptionPeriod;
+use Ljsharp\Subby\Traits\HasTrialPeriod;
+use Ljsharp\Subby\Traits\MorphsSchedules;
 
 /**
- * Class Plan
- * @package Bpuig\Subby\Models
+ * Class Plan.
  */
 class Plan extends Model
 {
     use SoftDeletes, HasFeatures, HasPricing, HasTrialPeriod, HasSubscriptionPeriod, HasGracePeriod, MorphsSchedules;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'tag',
@@ -45,7 +44,7 @@ class Plan extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $casts = [
         'tag' => 'string',
@@ -77,7 +76,7 @@ class Plan extends Model
     }
 
     /**
-     * Get validation rules
+     * Get validation rules.
      * @return string[]
      */
     public function getRules(): array
@@ -97,7 +96,7 @@ class Plan extends Model
             'grace_interval' => 'sometimes|in:hour,day,week,month',
             'invoice_period' => 'sometimes|integer|max:100000',
             'invoice_interval' => 'sometimes|in:hour,day,week,month',
-            'tier' => 'nullable|integer|max:100000'
+            'tier' => 'nullable|integer|max:100000',
         ];
     }
 
@@ -116,7 +115,7 @@ class Plan extends Model
      * @param string $tag
      * @return null|$this
      */
-    static public function getByTag(string $tag): ?Plan
+    public static function getByTag(string $tag): ?self
     {
         return static::where('tag', $tag)->first();
     }
@@ -124,7 +123,7 @@ class Plan extends Model
     /**
      * The plan may have many combinations.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function combinations(): HasMany
     {
@@ -134,7 +133,7 @@ class Plan extends Model
     /**
      * The plan may have many features.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function features(): HasMany
     {
@@ -144,7 +143,7 @@ class Plan extends Model
     /**
      * The plan may have many subscriptions.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * @return HasMany
      */
     public function subscriptions(): HasMany
     {

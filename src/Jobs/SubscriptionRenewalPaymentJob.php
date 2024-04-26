@@ -1,8 +1,7 @@
 <?php
 
-namespace Bpuig\Subby\Jobs;
+namespace Ljsharp\Subby\Jobs;
 
-use Bpuig\Subby\Models\PlanSubscription;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
+use Ljsharp\Subby\Models\PlanSubscription;
 
 class SubscriptionRenewalPaymentJob implements ShouldQueue
 {
@@ -45,7 +45,6 @@ class SubscriptionRenewalPaymentJob implements ShouldQueue
         // Set options from service constants
         $this->tries = $this->service::TRIES;
         $this->timeout = $this->service::TIMEOUT;
-
     }
 
     // Avoid overlapping jobs to avoid any double payment issues

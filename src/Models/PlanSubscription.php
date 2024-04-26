@@ -2,19 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Models;
+namespace Ljsharp\Subby\Models;
 
 use BadMethodCallException;
-use Bpuig\Subby\Exceptions\UsageDenied;
-use Bpuig\Subby\Services\Period;
-use Bpuig\Subby\Traits\BelongsToPlan;
-use Bpuig\Subby\Traits\HasFeatures;
-use Bpuig\Subby\Traits\HasGracePeriod;
-use Bpuig\Subby\Traits\HasGracePeriodUsage;
-use Bpuig\Subby\Traits\HasPricing;
-use Bpuig\Subby\Traits\HasSubscriptionPeriodUsage;
-use Bpuig\Subby\Traits\HasTrialPeriodUsage;
-use Bpuig\Subby\Traits\HasSchedules;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\Eloquent\Builder;
@@ -22,6 +12,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Validation\Rule;
+use Ljsharp\Subby\Exceptions\UsageDenied;
+use Ljsharp\Subby\Services\Period;
+use Ljsharp\Subby\Traits\BelongsToPlan;
+use Ljsharp\Subby\Traits\HasFeatures;
+use Ljsharp\Subby\Traits\HasGracePeriod;
+use Ljsharp\Subby\Traits\HasGracePeriodUsage;
+use Ljsharp\Subby\Traits\HasPricing;
+use Ljsharp\Subby\Traits\HasSchedules;
+use Ljsharp\Subby\Traits\HasSubscriptionPeriodUsage;
+use Ljsharp\Subby\Traits\HasTrialPeriodUsage;
 use LogicException;
 use UnexpectedValueException;
 
@@ -30,7 +30,7 @@ class PlanSubscription extends Model
     use BelongsToPlan, HasSchedules, HasFeatures, HasPricing, HasTrialPeriodUsage, HasSubscriptionPeriodUsage, HasGracePeriod, HasGracePeriodUsage;
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $fillable = [
         'tag',
@@ -57,7 +57,7 @@ class PlanSubscription extends Model
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     protected $casts = [
         'tag' => 'string',
@@ -76,7 +76,7 @@ class PlanSubscription extends Model
         'starts_at' => 'datetime',
         'ends_at' => 'datetime',
         'cancels_at' => 'datetime',
-        'canceled_at' => 'datetime'
+        'canceled_at' => 'datetime',
     ];
 
     /**
@@ -92,7 +92,7 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Get validation rules
+     * Get validation rules.
      * @return string[]
      */
     public function getRules(): array
@@ -133,7 +133,7 @@ class PlanSubscription extends Model
     /**
      * Get the owning subscriber.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     * @return MorphTo
      */
     public function subscriber(): MorphTo
     {
@@ -141,7 +141,7 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Get subscription features
+     * Get subscription features.
      * @return HasMany
      */
     public function features(): HasMany
@@ -167,7 +167,7 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Check if subscription features have been altered
+     * Check if subscription features have been altered.
      * @return bool
      */
     public function isAltered(): bool
@@ -186,7 +186,7 @@ class PlanSubscription extends Model
      * @return $this
      * @throws \Exception
      */
-    public function cancel(bool $immediately = false, bool $ignoreFallback = false): PlanSubscription
+    public function cancel(bool $immediately = false, bool $ignoreFallback = false): self
     {
         if (!$ignoreFallback && config('subby.fallback_plan_tag')) { // Do not cancel if a fallback plan is set
             $plan = Plan::getByTag(config('subby.fallback_plan_tag'));
@@ -200,7 +200,9 @@ class PlanSubscription extends Model
             // If cancel is immediate, set end date
             if ($immediately) {
                 // Cancel trial
-                if ($this->isOnTrial()) $this->trial_ends_at = $this->canceled_at;
+                if ($this->isOnTrial()) {
+                    $this->trial_ends_at = $this->canceled_at;
+                }
 
                 // Cancel subscription
                 $this->cancels_at = $this->canceled_at;
@@ -217,13 +219,13 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Uncancel subscription
+     * Uncancel subscription.
      *
      * This action undoes all cancel flags
      *
      * @return $this
      */
-    public function uncancel(): PlanSubscription
+    public function uncancel(): self
     {
         $this->canceled_at = null;
         $this->cancels_at = null;
@@ -242,7 +244,7 @@ class PlanSubscription extends Model
      * @return $this
      * @throws \Exception
      */
-    public function changePlan(Plan|PlanCombination $planCombination, bool $clearUsage = true, bool $syncInvoicing = true): PlanSubscription
+    public function changePlan(Plan|PlanCombination $planCombination, bool $clearUsage = true, bool $syncInvoicing = true): self
     {
         // Sometimes you want to keep usage
         // E.g. of false: Renew plan at day 6 of subscription,
@@ -259,13 +261,13 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Synchronize subscription data with plan
+     * Synchronize subscription data with plan.
      * @param Plan|PlanCombination|null $planCombination Plan or Plan Combination to be synchronized
      * @param bool $syncInvoicing Synchronize billing frequency or leave it unchanged
      * @param bool $syncFeatures
      * @return PlanSubscription
      */
-    public function syncPlan(Plan|PlanCombination $planCombination = null, bool $syncInvoicing = true, bool $syncFeatures = false): PlanSubscription
+    public function syncPlan(Plan|PlanCombination $planCombination = null, bool $syncInvoicing = true, bool $syncFeatures = false): self
     {
         if ($planCombination instanceof PlanCombination) {
             // If it's a Plan Combination, use parent plan
@@ -301,10 +303,10 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Synchronize features with current plan
+     * Synchronize features with current plan.
      * @param Plan|null $plan
      */
-    public function syncPlanFeatures(Plan $plan = null): PlanSubscription
+    public function syncPlanFeatures(Plan $plan = null): self
     {
         if (!$plan && !$this->plan) {
             throw new BadMethodCallException('Default plan not set.');
@@ -321,7 +323,7 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Remove features that have plan related but are no longer in selected plan
+     * Remove features that have plan related but are no longer in selected plan.
      * @param Plan $plan Plan to be compared
      */
     private function deleteFeaturesNotInPlan(Plan $plan)
@@ -339,7 +341,7 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Update subscription features to have same features as selected plan
+     * Update subscription features to have same features as selected plan.
      * @param Plan $plan Plan to be compared
      */
     private function updatePlanFeatures(Plan $plan)
@@ -358,7 +360,8 @@ class PlanSubscription extends Model
                     'resettable_period' => $planFeature->resettable_period,
                     'resettable_interval' => $planFeature->resettable_interval,
                     'sort_order' => $planFeature->sort_order,
-                ]);
+                ]
+            );
         }
     }
 
@@ -369,7 +372,7 @@ class PlanSubscription extends Model
      * @return $this
      * @throws \Exception
      */
-    public function renew(int $periods = 1): PlanSubscription
+    public function renew(int $periods = 1): self
     {
         if ($this->isCanceled()) {
             throw new LogicException('Unable to renew canceled subscription.');
@@ -395,7 +398,7 @@ class PlanSubscription extends Model
                     // If trial time is considered time of subscription
                     // we renew subscription and substract from period used days
                     $this->ends_at->subDays($this->getTrialPeriodUsageIn('day'));
-                } else if ($this->plan->trial_mode === 'outside') {
+                } elseif ($this->plan->trial_mode === 'outside') {
                     // Don't penalize early buyers
                     $this->ends_at->addDays($this->getTrialPeriodRemainingUsageIn('day'));
                 }
@@ -407,7 +410,9 @@ class PlanSubscription extends Model
                 $startDate = $this->hasEnded() ? Carbon::now() : $this->ends_at;
                 $period = new Period($this->invoice_interval, $this->invoice_period * $periods, $startDate);
 
-                if ($this->hasEnded()) $this->starts_at = $period->getStartDate();
+                if ($this->hasEnded()) {
+                    $this->starts_at = $period->getStartDate();
+                }
                 $this->ends_at = $period->getEndDate();
             }
 
@@ -420,10 +425,10 @@ class PlanSubscription extends Model
     /**
      * Get bookings of the given subscriber.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
-     * @param \Illuminate\Database\Eloquent\Model $subscriber
+     * @param Builder $builder
+     * @param Model $subscriber
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeOfSubscriber(Builder $builder, Model $subscriber): Builder
     {
@@ -433,10 +438,10 @@ class PlanSubscription extends Model
     /**
      * Scope subscriptions with ending trial.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      * @param int $dayRange
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeFindEndingTrial(Builder $builder, int $dayRange = 3): Builder
     {
@@ -449,9 +454,9 @@ class PlanSubscription extends Model
     /**
      * Scope subscriptions with ended trial.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeFindEndedTrial(Builder $builder): Builder
     {
@@ -461,10 +466,10 @@ class PlanSubscription extends Model
     /**
      * Scope subscriptions with ending periods.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      * @param int $dayRange
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeFindEndingPeriod(Builder $builder, int $dayRange = 3): Builder
     {
@@ -477,9 +482,9 @@ class PlanSubscription extends Model
     /**
      * Scope subscriptions with ended periods.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeFindEndedPeriod(Builder $builder): Builder
     {
@@ -487,11 +492,11 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Scope subscriptions that are payment pending
+     * Scope subscriptions that are payment pending.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      * @param Carbon|null $date Moment in time when to check
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeFindPendingPayment(Builder $builder, ?Carbon $date = null): Builder
     {
@@ -512,10 +517,10 @@ class PlanSubscription extends Model
     /**
      * Scope subscriptions by tag.
      *
-     * @param \Illuminate\Database\Eloquent\Builder $builder
+     * @param Builder $builder
      * @param string $tag
      *
-     * @return \Illuminate\Database\Eloquent\Builder
+     * @return Builder
      */
     public function scopeGetByTag(Builder $builder, string $tag): Builder
     {
@@ -539,11 +544,9 @@ class PlanSubscription extends Model
 
         $feature = $this->getFeatureByTag($featureTag);
 
-
         $usage = $this->usage()->firstOrNew([
-            'plan_subscription_feature_id' => $feature->getKey()
+            'plan_subscription_feature_id' => $feature->getKey(),
         ]);
-
 
         if ($feature->resettable_period) {
             // Set expiration date when the usage record is new or doesn't have one.
@@ -572,7 +575,7 @@ class PlanSubscription extends Model
      * @param string $featureTag
      * @param int $uses
      *
-     * @return \Bpuig\Subby\Models\PlanSubscriptionUsage|null
+     * @return PlanSubscriptionUsage|null
      */
     public function reduceFeatureUsage(string $featureTag, int $uses = 1): ?PlanSubscriptionUsage
     {
@@ -642,7 +645,7 @@ class PlanSubscription extends Model
     }
 
     /**
-     * Get feature usage
+     * Get feature usage.
      *
      * @param string $featureTag
      *

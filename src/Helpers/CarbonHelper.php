@@ -1,13 +1,10 @@
 <?php
 
-
-namespace Bpuig\Subby\Helpers;
-
+namespace Ljsharp\Subby\Helpers;
 
 class CarbonHelper
 {
     /**
-     *
      * @param string $action
      * @param string $interval
      * @return string
@@ -17,9 +14,7 @@ class CarbonHelper
         return strtolower($action) . ucfirst($interval) . 's';
     }
 
-
     /**
-     *
      * @param string $action
      * @param string $interval
      * @return string

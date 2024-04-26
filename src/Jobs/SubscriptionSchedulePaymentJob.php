@@ -1,8 +1,7 @@
 <?php
 
-namespace Bpuig\Subby\Jobs;
+namespace Ljsharp\Subby\Jobs;
 
-use Bpuig\Subby\Models\PlanSubscriptionSchedule;
 use http\Exception\InvalidArgumentException;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\Middleware\WithoutOverlapping;
 use Illuminate\Queue\SerializesModels;
+use Ljsharp\Subby\Models\PlanSubscriptionSchedule;
 
 class SubscriptionSchedulePaymentJob implements ShouldQueue
 {

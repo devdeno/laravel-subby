@@ -11,7 +11,7 @@ If in the higher plan you want to give unlimited access to the "counted" feature
 usage of features to be reset on a regular basis, provide optional `resettable_period` and `resettable_interval` fields.
 
 ```php
-use Bpuig\Subby\Models\Plan;
+use Ljsharp\Subby\Models\Plan;
 
 $plan = Plan::find(1);
 
@@ -28,9 +28,9 @@ $plan->features()->saveMany([
 Say you want to show the value of the feature _posts_per_social_profile_ from above. You can do so in many ways:
 
 ```php
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Models\PlanFeature;
-use Bpuig\Subby\Models\PlanSubscription;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Models\PlanFeature;
+use Ljsharp\Subby\Models\PlanSubscription;
 
 $plan = Plan::find(1);
 
@@ -51,7 +51,7 @@ then use it only for that amount. Features also have the ability to be resettabl
 too. See the following examples:
 
 ```php
-use Bpuig\Subby\Models\PlanFeature;
+use Ljsharp\Subby\Models\PlanFeature;
 
 // Find plan feature
 $feature = PlanFeature::where('tag', 'posts_per_social_profile')->first();

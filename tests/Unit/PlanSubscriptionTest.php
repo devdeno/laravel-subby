@@ -1,30 +1,28 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Tests\TestCase;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanSubscriptionTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test Subscription to already existing tag
+     * Test Subscription to already existing tag.
      */
     public function testUnableToCreatePlanSubscriptionWithExistingTag()
     {
-        $this->expectException('Bpuig\Subby\Exceptions\DuplicateException');
+        $this->expectException('Ljsharp\Subby\Exceptions\DuplicateException');
         $this->testUser->newSubscription('main', $this->testPlanBasic, 'Test');
     }
 
     /**
-     * Test Subscription to a deleted subscription
+     * Test Subscription to a deleted subscription.
      */
     public function testAbleToCreatePlanSubscriptionWithExistingTagAndDeletedPrevious()
     {
@@ -41,7 +39,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Test making a Subscription to a combination
+     * Test making a Subscription to a combination.
      */
     public function testSubscriptionToAPlanCombination()
     {
@@ -50,7 +48,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Test plan change
+     * Test plan change.
      */
     public function testPlanChange()
     {
@@ -63,22 +61,22 @@ class PlanSubscriptionTest extends TestCase
 
         // No previous plan features still attached and related to plan
         $this->assertTrue($subscription->features()->whereHas('feature', function (Builder $query) {
-                $query->where('plan_id', $this->testPlanBasic);
-            })->count() === 0);
+            $query->where('plan_id', $this->testPlanBasic);
+        })->count() === 0);
 
         // Current plan features
         $this->assertTrue($this->testUser->subscription('main')->features()->whereHas('feature', function (Builder $query) {
-                $query->where('plan_id', $this->testPlanPro->id);
-            })->count() === $this->testPlanPro->features()->count());
+            $query->where('plan_id', $this->testPlanPro->id);
+        })->count() === $this->testPlanPro->features()->count());
     }
 
     /**
-     * Test Attach feature
+     * Test Attach feature.
      */
     public function testAttachFeatureNotExistingInPlan()
     {
         $this->testUser->subscription('main')->features()->create([
-            'tag' => 'social_koala_profiles', 'name' => 'Social profiles available for your koala', 'value' => 5, 'sort_order' => 10
+            'tag' => 'social_koala_profiles', 'name' => 'Social profiles available for your koala', 'value' => 5, 'sort_order' => 10,
         ]);
 
         $this->assertDatabaseHas(config('subby.tables.plan_subscription_features'), [
@@ -87,7 +85,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Test plan synchronization
+     * Test plan synchronization.
      */
     public function testPlanSynchronization()
     {
@@ -106,7 +104,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Test subscription is not altered
+     * Test subscription is not altered.
      */
     public function testSubscriptionIsNotAltered()
     {
@@ -115,7 +113,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Test subscription is altered
+     * Test subscription is altered.
      */
     public function testSubscriptionIsAltered()
     {
@@ -124,16 +122,16 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Test non existing subscription exception
+     * Test non existing subscription exception.
      */
     public function testNonExistingSubscriptionException()
     {
-        $this->expectException('Bpuig\Subby\Exceptions\InvalidPlanSubscription');
+        $this->expectException('Ljsharp\Subby\Exceptions\InvalidPlanSubscription');
         $this->testUser->subscription('secondary');
     }
 
     /**
-     * Cancel subscription without fallback plan
+     * Cancel subscription without fallback plan.
      */
     public function testCancelSubscriptionWithoutFallbackPlan()
     {
@@ -143,7 +141,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Cancel subscription with fallback plan
+     * Cancel subscription with fallback plan.
      */
     public function testCancelSubscriptionWithFallbackPlan()
     {
@@ -153,7 +151,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Cancel subscription with a fallback plan that does not exist
+     * Cancel subscription with a fallback plan that does not exist.
      */
     public function testCancelSubscriptionWithInexistentFallbackPlan()
     {
@@ -163,7 +161,7 @@ class PlanSubscriptionTest extends TestCase
     }
 
     /**
-     * Cancel subscription with fallback plan and ignore it
+     * Cancel subscription with fallback plan and ignore it.
      */
     public function testCancelSubscriptionAndIgnoreFallbackPlan()
     {

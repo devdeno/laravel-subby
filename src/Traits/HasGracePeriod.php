@@ -1,16 +1,14 @@
 <?php
 
+namespace Ljsharp\Subby\Traits;
 
-namespace Bpuig\Subby\Traits;
-
-
-use Bpuig\Subby\Helpers\CarbonHelper;
-use Bpuig\Subby\Services\Period;
+use Ljsharp\Subby\Helpers\CarbonHelper;
+use Ljsharp\Subby\Services\Period;
 
 trait HasGracePeriod
 {
     /**
-     * Grace total duration in specified interval
+     * Grace total duration in specified interval.
      * @param string $interval
      * @return int
      * @throws \Exception
@@ -18,6 +16,7 @@ trait HasGracePeriod
     public function getGraceTotalDurationIn(string $interval) :int
     {
         $gracePeriod = new Period($this->grace_interval, $this->grace_period);
+
         return $gracePeriod->getStartDate()->{CarbonHelper::diffIn($interval)}($gracePeriod->getEndDate());
     }
 

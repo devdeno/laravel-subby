@@ -1,6 +1,6 @@
 <?php
 
-namespace Bpuig\Subby\Traits;
+namespace Ljsharp\Subby\Traits;
 
 trait MorphsSchedules
 {

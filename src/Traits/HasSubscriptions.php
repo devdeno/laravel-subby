@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Traits;
+namespace Ljsharp\Subby\Traits;
 
-use Bpuig\Subby\Exceptions\DuplicateException;
-use Bpuig\Subby\Exceptions\InvalidPlanSubscription;
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Models\PlanCombination;
-use Bpuig\Subby\Models\PlanSubscription;
-use Bpuig\Subby\Services\SubscriptionPeriod;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
 use InvalidArgumentException;
+use Ljsharp\Subby\Exceptions\DuplicateException;
+use Ljsharp\Subby\Exceptions\InvalidPlanSubscription;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Models\PlanCombination;
+use Ljsharp\Subby\Models\PlanSubscription;
+use Ljsharp\Subby\Services\SubscriptionPeriod;
 
 trait HasSubscriptions
 {
@@ -26,14 +26,14 @@ trait HasSubscriptions
      * @param string $id
      * @param string $localKey
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     abstract public function morphMany($related, $name, $type = null, $id = null, $localKey = null);
 
     /**
      * The subscriber may have many subscriptions.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     * @return MorphMany
      */
     public function subscriptions(): MorphMany
     {
@@ -43,7 +43,7 @@ trait HasSubscriptions
     /**
      * A model may have many active subscriptions.
      *
-     * @return \Illuminate\Database\Eloquent\Collection
+     * @return Collection
      */
     public function activeSubscriptions(): Collection
     {
@@ -87,7 +87,7 @@ trait HasSubscriptions
     /**
      * Get subscribed plans.
      *
-     * @return \Bpuig\Subby\Models\PlanSubscription|null
+     * @return PlanSubscription|null
      */
     public function subscribedPlans()
     {
@@ -114,10 +114,10 @@ trait HasSubscriptions
      * Subscribe subscriber to a new plan.
      *
      * @param string $tag Identifier tag for the subscription
-     * @param \Bpuig\Subby\Models\Plan|\Bpuig\Subby\Models\PlanCombination $planCombination Plan pricing and invoice data
+     * @param Plan|PlanCombination $planCombination Plan pricing and invoice data
      * @param string|null $name Human readable name for your subscriber's subscription
      * @param string|null $description Description for the subscription
-     * @param \Carbon\Carbon|null $startDate When will the subscription start
+     * @param Carbon|null $startDate When will the subscription start
      *
      * @return \Illuminate\Database\Eloquent\Model
      * @throws \Exception
@@ -161,4 +161,3 @@ trait HasSubscriptions
         throw new DuplicateException();
     }
 }
-

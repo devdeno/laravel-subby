@@ -1,11 +1,10 @@
 <?php
 
-namespace Bpuig\Subby\Tests\Database\Factories;
+namespace Ljsharp\Subby\Tests\Database\Factories;
 
-
-use Bpuig\Subby\Tests\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Ljsharp\Subby\Tests\Models\User;
 
 class UserFactory extends Factory
 {

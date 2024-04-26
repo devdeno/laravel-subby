@@ -18,18 +18,18 @@ return [
 
     // Models
     'models' => [
-        'plan' => \Bpuig\Subby\Models\Plan::class,
-        'plan_combination' => \Bpuig\Subby\Models\PlanCombination::class,
-        'plan_feature' => \Bpuig\Subby\Models\PlanFeature::class,
-        'plan_subscription' => \Bpuig\Subby\Models\PlanSubscription::class,
-        'plan_subscription_feature' => \Bpuig\Subby\Models\PlanSubscriptionFeature::class,
-        'plan_subscription_schedule' => \Bpuig\Subby\Models\PlanSubscriptionSchedule::class,
-        'plan_subscription_usage' => \Bpuig\Subby\Models\PlanSubscriptionUsage::class,
+        'plan' => Ljsharp\Subby\Models\Plan::class,
+        'plan_combination' => Ljsharp\Subby\Models\PlanCombination::class,
+        'plan_feature' => Ljsharp\Subby\Models\PlanFeature::class,
+        'plan_subscription' => Ljsharp\Subby\Models\PlanSubscription::class,
+        'plan_subscription_feature' => Ljsharp\Subby\Models\PlanSubscriptionFeature::class,
+        'plan_subscription_schedule' => Ljsharp\Subby\Models\PlanSubscriptionSchedule::class,
+        'plan_subscription_usage' => Ljsharp\Subby\Models\PlanSubscriptionUsage::class,
     ],
 
     'services' => [
         'payment_methods' => [
-            'free' => \Bpuig\Subby\Services\PaymentMethods\Free::class
-        ]
-    ]
+            'free' => Ljsharp\Subby\Services\PaymentMethods\Free::class,
+        ],
+    ],
 ];

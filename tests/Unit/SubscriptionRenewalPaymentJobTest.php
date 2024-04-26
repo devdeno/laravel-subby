@@ -1,22 +1,19 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Jobs\SubscriptionRenewalPaymentJob;
-use Bpuig\Subby\Services\PendingPaymentCollector;
-use Bpuig\Subby\Tests\TestCase;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use Ljsharp\Subby\Jobs\SubscriptionRenewalPaymentJob;
+use Ljsharp\Subby\Services\PendingPaymentCollector;
+use Ljsharp\Subby\Tests\TestCase;
 
 class SubscriptionRenewalPaymentJobTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test a successful payment renewal
+     * Test a successful payment renewal.
      * @throws \Exception
      */
     public function testSuccessfulJob()
@@ -39,7 +36,7 @@ class SubscriptionRenewalPaymentJobTest extends TestCase
     }
 
     /**
-     * Test a failed payment renewal
+     * Test a failed payment renewal.
      * @throws \Exception
      */
     public function testFailedJob()

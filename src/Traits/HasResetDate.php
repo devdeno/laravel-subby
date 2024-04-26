@@ -1,11 +1,9 @@
 <?php
 
+namespace Ljsharp\Subby\Traits;
 
-namespace Bpuig\Subby\Traits;
-
-
-use Bpuig\Subby\Services\Period;
 use Carbon\Carbon;
+use Ljsharp\Subby\Services\Period;
 
 trait HasResetDate
 {
@@ -14,7 +12,7 @@ trait HasResetDate
      *
      * @param Carbon|null $dateFrom
      *
-     * @return \Carbon\Carbon
+     * @return Carbon
      * @throws \Exception
      */
     public function getResetDate(?Carbon $dateFrom = null): Carbon

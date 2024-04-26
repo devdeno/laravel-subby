@@ -10,8 +10,8 @@ etc.
 Combinations must be unique for `country`, `currency`, `invoice_period` and `invoice_interval`.
 
 ```php
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Models\PlanCombination;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Models\PlanCombination;
 
 $plan = Plan::getByTag('basic');
 

@@ -5,7 +5,7 @@
 In your composer version, require v5.
 
 ```json
-"bpuig/laravel-subby": "^5.0",
+"ljsharp/laravel-subby": "^5.0",
 ```
 
 ## Config
@@ -24,11 +24,11 @@ Merge this lines into your current config.
     'plan_subscription_schedules' => 'plan_subscription_schedules'
 ],
 'models' => [
-    'plan_subscription_schedule' => \Bpuig\Subby\Models\PlanSubscriptionSchedule::class,
+    'plan_subscription_schedule' => \Ljsharp\Subby\Models\PlanSubscriptionSchedule::class,
 ],
 'services' => [
     'schedule' => [
-        'default' => \Bpuig\Subby\Services\ScheduleService::class
+        'default' => \Ljsharp\Subby\Services\ScheduleService::class
     ]
 ]
 ```

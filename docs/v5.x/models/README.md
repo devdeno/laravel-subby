@@ -3,10 +3,10 @@
 **Subby** uses this models:
 
 ```php
-Bpuig\Subby\Models\Plan;
-Bpuig\Subby\Models\PlanFeature;
-Bpuig\Subby\Models\PlanSubscription;
-Bpuig\Subby\Models\PlanSubscriptionFeature;
-Bpuig\Subby\Models\PlanSubscriptionSchedule;
-Bpuig\Subby\Models\PlanSubscriptionUsage;
+Ljsharp\Subby\Models\Plan;
+Ljsharp\Subby\Models\PlanFeature;
+Ljsharp\Subby\Models\PlanSubscription;
+Ljsharp\Subby\Models\PlanSubscriptionFeature;
+Ljsharp\Subby\Models\PlanSubscriptionSchedule;
+Ljsharp\Subby\Models\PlanSubscriptionUsage;
 ```

@@ -1,11 +1,9 @@
 <?php
 
+namespace Ljsharp\Subby\Traits;
 
-namespace Bpuig\Subby\Traits;
-
-
-use Bpuig\Subby\Helpers\CarbonHelper;
 use Illuminate\Support\Carbon;
+use Ljsharp\Subby\Helpers\CarbonHelper;
 
 trait HasSubscriptionPeriodUsage
 {
@@ -66,7 +64,7 @@ trait HasSubscriptionPeriodUsage
     }
 
     /**
-     * Subscription period used
+     * Subscription period used.
      * @param string $interval
      * @return int
      * @throws \Exception
@@ -77,7 +75,7 @@ trait HasSubscriptionPeriodUsage
     }
 
     /**
-     * Remaining subscription period duration
+     * Remaining subscription period duration.
      * @param string $interval
      * @return int
      */
@@ -87,7 +85,7 @@ trait HasSubscriptionPeriodUsage
     }
 
     /**
-     * Get the proportion of the remaining billing period
+     * Get the proportion of the remaining billing period.
      * @return float
      * @throws \Exception
      */
@@ -97,7 +95,7 @@ trait HasSubscriptionPeriodUsage
     }
 
     /**
-     * Get prorated price of subscription value
+     * Get prorated price of subscription value.
      * @return float
      * @throws \Exception
      */

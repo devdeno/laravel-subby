@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Bpuig\Subby\Services;
+namespace Ljsharp\Subby\Services;
 
-use Bpuig\Subby\Helpers\CarbonHelper;
 use Carbon\Carbon;
+use Ljsharp\Subby\Helpers\CarbonHelper;
 
 class Period
 {
@@ -68,7 +68,7 @@ class Period
     /**
      * Get start date.
      *
-     * @return \Carbon\Carbon
+     * @return Carbon
      */
     public function getStartDate(): Carbon
     {
@@ -78,7 +78,7 @@ class Period
     /**
      * Get end date.
      *
-     * @return \Carbon\Carbon
+     * @return Carbon
      */
     public function getEndDate(): Carbon
     {

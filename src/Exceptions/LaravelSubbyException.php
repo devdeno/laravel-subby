@@ -1,8 +1,7 @@
 <?php
 
-namespace Bpuig\Subby\Exceptions;
+namespace Ljsharp\Subby\Exceptions;
 
 abstract class LaravelSubbyException extends \Exception
 {
-
 }

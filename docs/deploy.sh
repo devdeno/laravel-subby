@@ -13,6 +13,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:bpuig/laravel-subby.git master:gh-pages
+git push -f git@github.com:ljsharp/laravel-subby.git master:gh-pages
 
 cd -

@@ -1,18 +1,16 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test Plan creation with already existing tag in database
+     * Test Plan creation with already existing tag in database.
      */
     public function testUnableToCreatePlanFeatureWithExistingTag()
     {

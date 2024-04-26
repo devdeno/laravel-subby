@@ -1,23 +1,19 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Jobs\SubscriptionRenewalPaymentJob;
-use Bpuig\Subby\Jobs\SubscriptionSchedulePaymentJob;
-use Bpuig\Subby\Services\PendingPaymentCollector;
-use Bpuig\Subby\Tests\TestCase;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-
+use Ljsharp\Subby\Jobs\SubscriptionSchedulePaymentJob;
+use Ljsharp\Subby\Services\PendingPaymentCollector;
+use Ljsharp\Subby\Tests\TestCase;
 
 class SubscriptionSchedulePaymentJobTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test a successful payment schedule
+     * Test a successful payment schedule.
      * @throws \Exception
      */
     public function testSuccessfulJob()
@@ -39,14 +35,13 @@ class SubscriptionSchedulePaymentJobTest extends TestCase
 
         $planSubscriptionSchedule = app(config('subby.models.plan_subscription_schedule'))::find($pendingPayments[0]['collectable_id']);
 
-
         $this->assertNull($planSubscriptionSchedule->failed_at);
         $this->assertNotNull($planSubscriptionSchedule->succeeded_at);
         $this->assertTrue($this->testUser->isSubscribedTo($this->testPlanPro->id));
     }
 
     /**
-     * Test a failed payment schedule
+     * Test a failed payment schedule.
      * @throws \Exception
      */
     public function testFailedJob()

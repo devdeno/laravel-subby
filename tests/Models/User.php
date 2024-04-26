@@ -1,9 +1,9 @@
 <?php
 
-namespace Bpuig\Subby\Tests\Models;
+namespace Ljsharp\Subby\Tests\Models;
 
-use Bpuig\Subby\Traits\HasSubscriptions;
 use Illuminate\Database\Eloquent\Model;
+use Ljsharp\Subby\Traits\HasSubscriptions;
 
 class User extends Model
 {
@@ -19,5 +19,4 @@ class User extends Model
     protected $fillable = [
         'name', 'email', 'password',
     ];
-
 }

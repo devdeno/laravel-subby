@@ -1,20 +1,17 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Models\PlanSubscriptionFeature;
-use Bpuig\Subby\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Ljsharp\Subby\Models\PlanSubscriptionFeature;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanSubscriptionFeatureTest extends TestCase
 {
     use RefreshDatabase;
 
-
     /**
-     * Test sync one subscription feature
+     * Test sync one subscription feature.
      */
     public function testSyncOneSubscriptionFeature()
     {
@@ -28,7 +25,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Consume all of a feature and check if it can be used
+     * Consume all of a feature and check if it can be used.
      */
     public function testConsumeAllFeature()
     {
@@ -37,7 +34,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Consume all of a feature and renew
+     * Consume all of a feature and renew.
      */
     public function testConsumeAllFeatureAndRenew()
     {
@@ -47,7 +44,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Consume all of a feature and check next period
+     * Consume all of a feature and check next period.
      */
     public function testRenewToNextPeriodAndThenUseFeature()
     {
@@ -57,7 +54,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Cancel subscription immediately and check for usage
+     * Cancel subscription immediately and check for usage.
      */
     public function testImmediateCancelSubscriptionAndThenUseFeature()
     {
@@ -66,7 +63,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Cancel subscription and check for usage
+     * Cancel subscription and check for usage.
      */
     public function testCancelSubscriptionAndThenUseFeature()
     {
@@ -75,7 +72,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Cancel subscription and check for usage next period
+     * Cancel subscription and check for usage next period.
      */
     public function testCancelSubscriptionThenMoveToNextPeriodAndThenUseFeature()
     {
@@ -86,7 +83,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Test use attached feature without plan relation
+     * Test use attached feature without plan relation.
      */
     public function testCanUseFeatureNotExistingInPlan()
     {
@@ -94,7 +91,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Test use attached feature existing in current related plan
+     * Test use attached feature existing in current related plan.
      */
     public function testCannotUseFeatureExistingInCurrentRelatedPlan()
     {
@@ -104,7 +101,7 @@ class PlanSubscriptionFeatureTest extends TestCase
     }
 
     /**
-     * Test deletion of features not in synced plan
+     * Test deletion of features not in synced plan.
      */
     public function testDeleteAttachedFeatures()
     {

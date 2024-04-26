@@ -1,20 +1,18 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Tests\Database\Factories\UserFactory;
-use Bpuig\Subby\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Tests\Database\Factories\UserFactory;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanSubscriptionTrialTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test subscription without trial
+     * Test subscription without trial.
      */
     public function testPlanSubscriptionWithoutTrial()
     {
@@ -29,7 +27,7 @@ class PlanSubscriptionTrialTest extends TestCase
             'invoice_interval' => 'month',
             'price' => 10,
             'tier' => 1,
-            'currency' => 'EUR'
+            'currency' => 'EUR',
         ]);
 
         $user = UserFactory::new()->create();
@@ -52,7 +50,7 @@ class PlanSubscriptionTrialTest extends TestCase
     }
 
     /**
-     * Test subscription with trial
+     * Test subscription with trial.
      */
     public function testPlanSubscriptionWithTrial()
     {
@@ -67,7 +65,7 @@ class PlanSubscriptionTrialTest extends TestCase
             'invoice_interval' => 'month',
             'price' => 10,
             'tier' => 1,
-            'currency' => 'EUR'
+            'currency' => 'EUR',
         ]);
 
         $user = UserFactory::new()->create();

@@ -1,20 +1,18 @@
 <?php
 
+namespace Ljsharp\Subby\Tests\Unit;
 
-namespace Bpuig\Subby\Tests\Unit;
-
-
-use Bpuig\Subby\Models\Plan;
-use Bpuig\Subby\Tests\Database\Factories\UserFactory;
-use Bpuig\Subby\Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Ljsharp\Subby\Models\Plan;
+use Ljsharp\Subby\Tests\Database\Factories\UserFactory;
+use Ljsharp\Subby\Tests\TestCase;
 
 class PlanGraceTest extends TestCase
 {
     use RefreshDatabase;
 
     /**
-     * Test Plan creation with grace
+     * Test Plan creation with grace.
      */
     public function testPlanHasGrace(): Plan
     {
@@ -30,7 +28,7 @@ class PlanGraceTest extends TestCase
             'grace_period' => 4,
             'invoice_interval' => 'month',
             'invoice_period' => 1,
-            'tier' => 1
+            'tier' => 1,
         ]);
 
         $this->assertTrue($plan->hasGrace());
@@ -39,7 +37,7 @@ class PlanGraceTest extends TestCase
     }
 
     /**
-     * Test Subscription with grace period
+     * Test Subscription with grace period.
      * @depends testPlanHasGrace
      */
     public function testSubscriptionHasGrace($plan): void
@@ -51,7 +49,7 @@ class PlanGraceTest extends TestCase
     }
 
     /**
-     * Test Subscription is active on grace period
+     * Test Subscription is active on grace period.
      * @depends testPlanHasGrace
      */
     public function testSubscriptionIsActiveOnGrace($plan): void
@@ -68,7 +66,7 @@ class PlanGraceTest extends TestCase
     }
 
     /**
-     * Test Subscription is not active on ending grace period
+     * Test Subscription is not active on ending grace period.
      * @depends testPlanHasGrace
      */
     public function testSubscriptionIsNotActiveOnGraceEnd($plan): void
