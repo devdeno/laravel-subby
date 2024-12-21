@@ -1,5 +1,5 @@
 {
-    "name": "bpuig/laravel-subby",
+    "name":  "devdeno/laravel-subby",
     "description": "Laravel Subby is a flexible plans and subscription management system for Laravel.",
     "type": "library",
     "keywords": [
